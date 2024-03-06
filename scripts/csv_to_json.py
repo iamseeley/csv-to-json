@@ -13,7 +13,7 @@ data = []
 with open(csv_path, mode='r', encoding='utf-8') as csv_file:
     csv_reader = csv.DictReader(csv_file)
     for row in csv_reader:
-        filtered_row = {field: row[field] for field in desired_fields if field in row}
+        filtered_row = {("number" if field == "#" else field): row[field] for field in desired_fields if field in row or "#" in row}
         data.append(filtered_row)
 
 
